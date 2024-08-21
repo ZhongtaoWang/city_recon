@@ -51,7 +51,7 @@ conda activate city_recon
 # Install core dependencies
 pip install -U openmim
 pip install torch torchvision  opencv-python huggingface_hub matplotlib pycocotools opencv-python onnx onnxruntime timm
-pip install mmcv-full  # it may take long time
+mim install mmcv-full  # it may take long time, if failed, try pip install mmcv-full
 pip install mmsegmentation==0.30.0
 pip install scikit-image scikit-learn scipy
 ```
