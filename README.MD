@@ -160,14 +160,14 @@ To process an image and generate the 3D model using Docker, you can run the cont
 
 ```bash
 
-docker run --gpus all --rm -v /path/to/input_image.png:/app/input.png -v /path/to/output_folder:/app/workdir city_recon /app/input.png
+docker run --gpus all --rm -v /path/to/input_image.png:/app/input.png -v /path/to/output_folder:/app/work_dir city_recon /app/input.png
 
 ```
 
 #### Explanation:
 - `--rm`: Automatically removes the container when it exits.
 - `-v /path/to/input_image.png:/app/input.png`: Mounts the input image from your local system into the container.
-- `-v /path/to/output_folder:/app/workdir`: Mounts the output directory from the container to your local system, where the results will be saved.
+- `-v /path/to/output_folder:/app/work_dir`: Mounts the output directory from the container to your local system, where the results will be saved.
 - `city_recon`: This is the name of the Docker image you built.
 - `/app/input.png`: This is the input image path inside the container.
 
@@ -176,16 +176,16 @@ docker run --gpus all --rm -v /path/to/input_image.png:/app/input.png -v /path/t
 Suppose you have an image located at `./assets/3674.png` and you want to save the output to a folder called `./output`. You would run the following command:
 
 ```bash
-docker run --gpus all --rm -v $(pwd)/assets/3674.png:/app/input.png -v $(pwd)/output:/app/workdir city_recon /app/input.png
+docker run --gpus all --rm -v $(pwd)/assets/3674.png:/app/input.png -v $(pwd)/output:/app/work_dir city_recon /app/input.png
 ```
 
 ### Step 3: Accessing the Results
 
 After the container finishes processing, you will find the results in the `output` folder that you mounted in the previous step. The generated files include:
 
-- **3D Model (no texture):** `workdir/ply/${image_name}.ply`
-- **3D Model (with texture):** `workdir/ply/${image_name}_color.ply`
-- **Intermediate Visualization Results:** `workdir/visualize/`
+- **3D Model (no texture):** `work_dir/ply/${image_name}.ply`
+- **3D Model (with texture):** `work_dir/ply/${image_name}_color.ply`
+- **Intermediate Visualization Results:** `work_dir/visualize/`
 
 You can explore these files in your local directory.
 
@@ -195,7 +195,7 @@ If your system does not have an NVIDIA GPU and you have installed the NVIDIA Con
 
 ```bash
 
-docker run --rm -v /path/to/input_image.png:/app/input.png -v /path/to/output_folder:/app/workdir city_recon /app/input.png
+docker run --rm -v /path/to/input_image.png:/app/input.png -v /path/to/output_folder:/app/work_dir city_recon /app/input.png
 
 ```
 
@@ -208,9 +208,9 @@ This will enable CUDA support for faster processing.
 
 The output files are saved as follows:
 
-- **3D Model (no texture):** `workdir/ply/${image_name}.ply`
-- **3D Model (with texture):** `workdir/ply/${image_name}_color.ply`
-- **Intermediate Visualization Results:** `workdir/visualize/`
+- **3D Model (no texture):** `work_dir/ply/${image_name}.ply`
+- **3D Model (with texture):** `work_dir/ply/${image_name}_color.ply`
+- **Intermediate Visualization Results:** `work_dir/visualize/`
 
 ### Visualization Example
 
